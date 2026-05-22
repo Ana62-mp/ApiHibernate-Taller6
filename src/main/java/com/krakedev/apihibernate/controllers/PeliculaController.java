@@ -2,6 +2,8 @@ package com.krakedev.apihibernate.controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,38 +27,38 @@ public class PeliculaController {
 	}
 	
 	@PostMapping
-	public Pelicula crear(@RequestBody Pelicula pelicula) {
-		return servicioP.crear(pelicula);
+	public ResponseEntity<?> crear(@RequestBody Pelicula pelicula) {
+		return new ResponseEntity<>(servicioP.crear(pelicula), HttpStatus.CREATED);
 	}
 	
 	@GetMapping
-	public List<Pelicula> listar(){
-		return servicioP.listar();
+	public ResponseEntity<?> listar(){
+		return new ResponseEntity<>(servicioP.listar(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
-	public Pelicula buscarPorId(@PathVariable Long id) {
-		return servicioP.buscarPorId(id);
+	public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
+		return new ResponseEntity<>(servicioP.buscarPorId(id), HttpStatus.OK);
 	}
 	
 	@PutMapping("/{id}")
-	public Pelicula actualizar(@PathVariable Long id, @RequestBody Pelicula pelicula) {
-		return servicioP.actualizar(id, pelicula);
+	public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody Pelicula pelicula) {
+		return new ResponseEntity<>(servicioP.actualizar(id, pelicula), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
-	public boolean eliminar(@PathVariable Long id) {
-		return servicioP.eliminar(id);
+	public ResponseEntity<?> eliminar(@PathVariable Long id) {
+		return new ResponseEntity<>(servicioP.eliminar(id), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{genero}")
-	public List<Pelicula> buscarPorGenero(@PathVariable String genero){
-		return servicioP.buscarPorGenero(genero);
+	public ResponseEntity<?> buscarPorGenero(@PathVariable String genero){
+		return new ResponseEntity<>(servicioP.buscarPorGenero(genero), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{disponible}")
-	public List<Pelicula> buscarPorDisponible(@PathVariable boolean disponible){
-		return servicioP.buscarPorDisponible(disponible);
+	public ResponseEntity<?> buscarPorDisponible(@PathVariable boolean disponible){
+		return new ResponseEntity<>(servicioP.buscarPorDisponible(disponible), HttpStatus.OK);
 	}
 	
 	
