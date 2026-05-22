@@ -31,6 +31,31 @@ public class ServicioPelicula {
 		return peliculaRepository.findById(id).orElse(null);
 	}
 	
+	public Pelicula actualizar(Long id, Pelicula pelicula) {
+		Pelicula existeP=buscarPorId(id);
+		if(existeP!=null) {
+			return peliculaRepository.save(pelicula);			
+		}
+		return null;
+	}
+	
+	public boolean eliminar(Long id) {
+		Pelicula existeP=buscarPorId(id);
+		if(existeP!=null) {
+			peliculaRepository.deleteById(id);
+			return true;
+		}
+		return false;
+	}
+	
+	public List<Pelicula> buscarPorGenero(String genero){
+		return peliculaRepository.findByGenero(genero);
+	}
+	public List<Pelicula> buscarPorDisponible(boolean disponible){
+		return peliculaRepository.findByDisponible(disponible);
+	}
+	
+	
 	
 	
 	
